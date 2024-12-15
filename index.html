@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/master.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <title>Movies</title>
+</head>
+<body>
+  <div class="home container-fluid row mt-2">
+    <div class="list col-2">
+        <ul>
+            <li> <h1 class="text-white">FLiX</h1></li>
+            <li class=" link active"><i class="fa-solid fa-compass"></i><span>Browse</span></li>
+            <li class="link"><i class="fa-regular fa-heart"></i><span>watchlist</span></li>
+            <li class="link"><i class="fa-solid fa-calendar-days"></i><span>Coming soon</span></li>
+        </ul>
+    </div>
+    <div class=" browse text-white col-10 container-fluid">
+       <header class="d-flex align-items-center justify-content-between">
+         <div class="search-bar d-flex gap-2 align-items-center">
+            <!-- <label><i class="fa-solid fa-magnifying-glass"></i></label> -->
+        <input class="search-input rounded-pill px-3 py-2" type="text" placeholder="search everything">
+        <!-- <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div> -->
+    </div>
+    <div class="notification d-flex align-items-center justify-content-center"><i class="fa-solid fa-bell"></i></div>
+    </header>
+        <div class="landing container mt-4 text-white">
+            <div class="landing-info ms-4">
+                <h2 class="mb-4">The Soul<br>conductor</h2>
+                <ul class="flag d-flex align-items-center gap-4">
+                    <li class="d-flex align-items-center gap-1"><i class="fa-solid fa-ticket"></i><span>7.8</span></li>
+                    <li class="d-flex align-items-center gap-1"><img src="./imgs/us.png" alt="" srcset=""><span>English</span></li>
+                </ul>
+                <button class="rounded-pill mt-5">Watch</button>
+            </div>
+           <div class="landing-img"><img src="./imgs/landing2.jpg" alt="" srcset=""></div>
+        </div>
+        <ul class="filters row mt-5 text-center">
+            <!-- <li class="trending col-sm-2 col-3 active" title="trending"><span>Trending</span></li> -->
+            <li class="drama col-sm-2 col-3 active" title="Drama"><span>Drama</span></li>
+            <li class="action col-sm-2 col-3" title="Action"><span>Action</span></li>
+            <li class="crime col-sm-2 col-3" title="Crime"><span>Crime</span></li>
+            <li class="romance col-sm-2 col-3" title="Romance"><span>Romance</span></li>
+            <li class="sci-fi col-sm-2 col-3" title="Sci-Fi"><span>Sci-Fi</span></li>
+            <li class="mystery col-sm-2 col-3" title="Mystery"><span>Mystery</span></li>
+            <li class="thriller col-sm-2 col-3" title="Thriller"><span>Thriller</span></li>
+            <li class="fantasy col-sm-2 col-3" title="Fantasy"><span>Fantasy</span></li>
+        </ul>
+        <div class="movies container mt-3">
+          
+        </div>
+    </div>
+  </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
