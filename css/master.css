@@ -203,6 +203,9 @@
     background-color: transparent;
     /* border:1px solid rgba(128, 128, 128, 0.122); */
   }
+  .cards{
+    align-items: stretch;
+  }
   .star{
     color:gold;
   }
@@ -231,3 +234,23 @@
       font-size:12px;
     }
    }
+   .like{
+    width:30px;
+   }
+   .like i{
+    font-size: 20px;
+   }
+  .liked .date-div i{
+    color:var(--red-color);
+   }
+  @media(max-width:991px){
+    .card h4{
+      font-size: 14px;
+    }
+    .like{
+      width:20px;
+    }
+    .like i{
+      font-size: 15px;
+    }
+  }

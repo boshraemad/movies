@@ -4,7 +4,7 @@ movieContainer.className="movie-container container-fluid  d-flex align-items-ce
 fetch(`https://moviesb.tryasp.net/api/movies/${movieId}`).then(res=>res.json())
 .then(movie=>{
     console.log(movie.trailer);
-    movieLayout(movie)
+    movieLayout(movie);
 })
 function movieLayout(movie){
     let container=document.createElement("div");
@@ -45,14 +45,14 @@ function movieLayout(movie){
     trailer.innerHTML="Watch Trailer <i class='fa-solid fa-play'></i>";
     detailsContainer.appendChild(trailer);
     container.appendChild(detailsContainer);
-    movieContainer.appendChild(container);
     let videoTrailer=document.createElement("div");
-    videoTrailer.className=" video d-flex align-items-center justify-content-center mb-5";
+    videoTrailer.className=" video col-12 d-flex align-items-center justify-content-center";
     videoTrailer.id="trailer";
-    videoTrailer.innerHTML=`<iframe width="860" height="615" src="https://www.youtube.com/embed/zAGVQLHvwOY?si=CdyTEUJv01V3kFwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    videoTrailer.innerHTML=`<iframe width="90%" height="100%" src=${movie.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
     // videoTrailer.className="video";
     // videoTrailer.setAttribute("src",movie.trailer);
     // videoTrailer.setAttribute("width",300);
     // videoTrailer.setAttribute("height",300);
-    document.body.appendChild(videoTrailer);
+    container.appendChild(videoTrailer);
+    movieContainer.appendChild(container);
 }

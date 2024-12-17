@@ -2,9 +2,17 @@ let listArray=document.querySelectorAll(".list ul li");
 let list=document.querySelector(".list ul");
 let filtersArray=document.querySelectorAll(".filters li");
 let browsePage=document.querySelector(".browse");
+let homePage=document.querySelector(".home");
 let filtersDiv=document.querySelector(".filters");
 let moviesContainer=document.querySelector(".movies");
-localStorage.clear();
+let watchList=[];
+// if(window.localStorage.getItem("watchList")){
+//     tasksarray=JSON.parse(window.localStorage.getItem("watchList"));
+// }
+localStorage.removeItem("movieId");
+
+// localStorage.setItem("watchList");
+// addArrayToLocal(watchList);  
 fetch("https://moviesb.tryasp.net/api/movies").then(res=>res.json())
 .then(data=>{
     let filterArray=[];
@@ -18,6 +26,7 @@ fetch("https://moviesb.tryasp.net/api/movies").then(res=>res.json())
             });
         });
         addarraytomoviecontainer(filterArray,filterValue);
+        addClassLikedFromLocal();
         
     }
     getFilterArray(filterValue);
@@ -30,12 +39,32 @@ fetch("https://moviesb.tryasp.net/api/movies").then(res=>res.json())
         }
         getFilterArray(filterValue);
         addarraytomoviecontainer(filterArray,filterValue);
+        addClassLikedFromLocal();
     });
     moviesContainer.addEventListener("click",((e)=>{
         if(e.target.classList.contains("poster")){
             let movieId=e.target.parentElement.id;
             // console.log(movieId);
             openMoviePage(movieId);
+        }
+    }))
+    moviesContainer.addEventListener("click",((e)=>{
+        if(e.target.classList.contains("card")){
+        watchList=JSON.parse(window.localStorage.getItem("watchList"));
+        watchList=Array.from(new Set(watchList));
+        console.log(watchList);
+           e.target.classList.toggle("liked");
+           if(e.target.classList.contains("liked")){
+            watchList.push(e.target.id);
+            // let watchListIds=new Set(watchList);
+           }else{
+            watchList=watchList.filter((el)=>{
+                return el!==e.target.id; 
+            });
+           }
+        //    window.localStorage.setItem("watchList",JSON.stringify(watchList));
+        addArrayToLocal(watchList);
+        console.log(watchList);
         }
     }))
 });
@@ -58,7 +87,7 @@ function addarraytomoviecontainer(array,value){
         poster.setAttribute("loading","lazy");
         card.appendChild(poster);
         let cardTitle=document.createElement("h4");
-        cardTitle.className="mt-2"
+        cardTitle.className=" movie-title mt-2"
         cardTitle.innerHTML=element.title;
         card.appendChild(cardTitle);
         let infoDiv=document.createElement("div");
@@ -73,10 +102,15 @@ function addarraytomoviecontainer(array,value){
         rate.innerHTML=element.rating;
         ratingDiv.appendChild(rate);
         let dateDiv=document.createElement("div");
+        dateDiv.className="date-div";
         let date=document.createElement("span");
         date.className="date";
         date.innerHTML=element.releaseDate.slice(0,4);
         dateDiv.appendChild(date);
+        let like=document.createElement("span");
+        like.className="like ms-3";
+        like.innerHTML='<i class="fa-solid fa-heart"></i>';
+        dateDiv.appendChild(like);
         infoDiv.appendChild(ratingDiv);
         infoDiv.appendChild(dateDiv);
         card.appendChild(infoDiv);
@@ -110,7 +144,32 @@ function openMoviePage(id){
     setLocalStorageId(id);
 let w=window.open("./movie.html","_self");
 }
+function openWatchListPage(){
+let w=window.open("./watch.html","_self");
+}
 function setLocalStorageId(id){
-    localStorage.clear();
+    // localStorage.removeItem("movieId");
     window.localStorage.setItem("movieId",id);
+}
+document.querySelector(".watchlist").onclick=()=>{
+    clearPage();
+}
+document.querySelector(".watchlist").onclick=()=>{
+    openWatchListPage();
+}
+function addClassLikedFromLocal(){
+   if(window.localStorage.getItem("watchList")){
+    let list=JSON.parse(window.localStorage.getItem("watchList"));
+    list.forEach(element => {
+        document.querySelectorAll(".movies .cards .card").forEach(card=>{
+            if(card.id===element){
+                card.classList.add("liked");
+                console.log(element);
+            }
+        })
+    });
+   }
+}
+function addArrayToLocal(array){
+    window.localStorage.setItem("watchList",JSON.stringify(array));
 }

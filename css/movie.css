@@ -78,9 +78,17 @@
       margin-bottom: 30px;
     }
   }
-@media(max-width:992px){
-  .videao{
-    width:200px;
-    height:200px;
+.video{
+  margin-top:100px;
+  height:800px;
+}
+@media(max-width:991px){
+  .video{
+    height:600px;
+  }
+}
+@media(max-width:767px){
+  .video{
+    height:300px;
   }
 }
