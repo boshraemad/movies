@@ -7,7 +7,7 @@
     /* padding:0; */
   }
   body{
-    background-color:var(--main-color);
+    background-color:#000;
   }
   :root{
     --main-color:#151515;
@@ -88,7 +88,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000;
+    background-color: #111217;
     border-radius:30px;
     overflow:hidden;
     padding:0;
